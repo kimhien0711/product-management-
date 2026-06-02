@@ -1,22 +1,58 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import ProductModal from "../components/ProductModal";
+import EditProduct from "../components/EditProduct";
+import ConfirmDialog from "../components/ConfirmDialog";
 import ProductTable from "../components/ProductTable";
 import StatsCard from "../components/StatsCard";
 import { initialProducts } from "../data/products";
 import type { Product } from "../types/product";
 
+interface ConfirmDelete {
+  id: number;
+  name: string;
+}
+
 export default function Dashboard() {
   const [products, setProducts] = useState(initialProducts);
   const [showModal, setShowModal] = useState(false);
+  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [confirmDelete, setConfirmDelete] = useState<ConfirmDelete | null>(null);
+  const [searchKeyword, setSearchKeyword] = useState("");
 
-  const handleDelete = (id: number) => {
-    setProducts(products.filter((product) => product.id !== id));
+  const handleDeleteClick = (id: number, name: string) => {
+    setConfirmDelete({ id, name });
+  };
+
+  const handleConfirmDelete = () => {
+    if (confirmDelete) {
+      setProducts(
+        products.filter((product) => product.id !== confirmDelete.id),
+      );
+      setConfirmDelete(null);
+    }
   };
 
   const handleAdd = (product: Product) => {
     setProducts([...products, product]);
   };
+
+  const handleEdit = (product: Product) => {
+    setEditingProduct(product);
+  };
+
+  const handleSaveEdit = (updatedProduct: Product) => {
+    setProducts(
+      products.map((product) =>
+        product.id === updatedProduct.id ? updatedProduct : product,
+      ),
+    );
+    setEditingProduct(null);
+  };
+
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchKeyword.toLowerCase()),
+  );
 
   return (
     <div className="min-h-screen bg-slate-100 py-10">
@@ -55,7 +91,7 @@ export default function Dashboard() {
                 Tổng sản phẩm
               </p>
               <p className="mt-3 text-3xl font-semibold text-slate-900">
-                {products.length}
+                {searchKeyword ? filteredProducts.length : products.length}
               </p>
             </div>
 
@@ -66,6 +102,8 @@ export default function Dashboard() {
               <input
                 type="text"
                 placeholder="Nhập tên sản phẩm..."
+                value={searchKeyword}
+                onChange={(e) => setSearchKeyword(e.target.value)}
                 className="mt-3 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100"
               />
             </div>
@@ -74,9 +112,14 @@ export default function Dashboard() {
 
         <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm">
           <ProductTable
-            products={products}
-            onDelete={handleDelete}
-            onEdit={() => {}}
+            products={filteredProducts}
+            onDelete={(id) => {
+              const product = products.find((p) => p.id === id);
+              if (product) {
+                handleDeleteClick(id, product.name);
+              }
+            }}
+            onEdit={handleEdit}
           />
         </div>
 
@@ -84,6 +127,26 @@ export default function Dashboard() {
           <ProductModal
             onClose={() => setShowModal(false)}
             onSave={handleAdd}
+          />
+        )}
+
+        {editingProduct && (
+          <EditProduct
+            product={editingProduct}
+            onClose={() => setEditingProduct(null)}
+            onSave={handleSaveEdit}
+          />
+        )}
+
+        {confirmDelete && (
+          <ConfirmDialog
+            title="Xác nhận xóa sản phẩm"
+            message={`Bạn có chắc chắn muốn xóa sản phẩm "${confirmDelete.name}"? Hành động này không thể hoàn tác.`}
+            confirmText="Xóa"
+            cancelText="Hủy"
+            isDestructive={true}
+            onConfirm={handleConfirmDelete}
+            onCancel={() => setConfirmDelete(null)}
           />
         )}
       </div>

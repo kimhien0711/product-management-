@@ -1,17 +1,30 @@
 ﻿import { useState } from "react";
+import { FaBox, FaTag, FaDollarSign } from "react-icons/fa";
 
 function ProductForm({ onAdd }) {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError("");
+
+    if (!name.trim() || !category.trim() || !price.trim()) {
+      setError("Vui lòng điền đầy đủ thông tin");
+      return;
+    }
+
+    if (Number(price) <= 0) {
+      setError("Giá phải lớn hơn 0");
+      return;
+    }
 
     const newProduct = {
       id: Date.now(),
-      name,
-      category,
+      name: name.trim(),
+      category: category.trim(),
       price: Number(price),
     };
 
@@ -25,70 +38,90 @@ function ProductForm({ onAdd }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+      className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm"
     >
-      <div className="mb-6">
-        <div className="flex items-center justify-between gap-4">
+      <div className="mb-6 border-b border-slate-200 pb-6">
+        <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-xs uppercase tracking-[0.28em] text-cyan-600 font-semibold">
-              Thêm sản phẩm
-            </p>
-            <h2 className="mt-2 text-2xl font-semibold text-slate-900">
-              Nhập thông tin sản phẩm
+            <div className="flex items-center gap-3 mb-3">
+              <div className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-600 to-sky-600 text-white">
+                <FaBox className="text-base" />
+              </div>
+              <p className="text-xs uppercase tracking-[0.25em] text-cyan-600 font-semibold">
+                Thêm sản phẩm
+              </p>
+            </div>
+            <h2 className="text-xl font-semibold text-slate-900">
+              Nhập thông tin sản phẩm mới
             </h2>
           </div>
-          <span className="rounded-full bg-cyan-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-cyan-700">
-            Nhanh chóng
-          </span>
         </div>
-        <p className="mt-3 text-sm leading-6 text-slate-500">
-          Điền tên, danh mục và giá để thêm sản phẩm vào danh sách một cách
-          chính xác.
+        <p className="mt-3 text-sm text-slate-600">
+          Điền đầy đủ các trường bắt buộc để thêm sản phẩm vào hệ thống.
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      {error && (
+        <div className="mb-4 rounded-2xl bg-red-50 border border-red-200 px-4 py-3">
+          <p className="text-sm font-medium text-red-700">{error}</p>
+        </div>
+      )}
+
+      <div className="grid gap-4 sm:grid-cols-2 mb-4">
         <label className="block text-sm font-medium text-slate-700">
-          Tên sản phẩm
+          <div className="flex items-center gap-2 mb-3">
+            <FaTag className="text-cyan-600 text-xs" />
+            Tên sản phẩm <span className="text-red-500">*</span>
+          </div>
           <input
-            className="mt-3 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100"
-            placeholder="Nhập tên sản phẩm"
+            className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 placeholder-slate-400 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100 focus:bg-white"
+            placeholder="VD: iPhone 15 Pro"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
           />
         </label>
 
         <label className="block text-sm font-medium text-slate-700">
-          Danh mục
+          <div className="flex items-center gap-2 mb-3">
+            <FaBox className="text-cyan-600 text-xs" />
+            Danh mục <span className="text-red-500">*</span>
+          </div>
           <input
-            className="mt-3 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100"
-            placeholder="Nhập danh mục"
+            className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 placeholder-slate-400 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100 focus:bg-white"
+            placeholder="VD: Điện thoại"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
+            required
           />
         </label>
       </div>
 
-      <div className="mt-4">
+      <div className="mb-6">
         <label className="block text-sm font-medium text-slate-700">
-          Giá
+          <div className="flex items-center gap-2 mb-3">
+            <FaDollarSign className="text-cyan-600 text-xs" />
+            Giá (VND) <span className="text-red-500">*</span>
+          </div>
           <input
             type="number"
-            className="mt-3 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100"
-            placeholder="Nhập giá sản phẩm"
+            className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 placeholder-slate-400 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100 focus:bg-white"
+            placeholder="VD: 15000000"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            required
+            min="0"
           />
         </label>
       </div>
 
-      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <button className="w-full rounded-2xl bg-cyan-600 px-5 py-3 text-white transition hover:bg-cyan-700 sm:w-auto">
-          Thêm sản phẩm
+      <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
+        <button
+          type="submit"
+          className="w-full rounded-2xl bg-gradient-to-r from-cyan-600 to-sky-600 px-6 py-3 text-white font-semibold shadow-sm transition hover:shadow-md hover:from-cyan-700 hover:to-sky-700 sm:w-auto"
+        >
+          + Thêm sản phẩm
         </button>
-        <p className="text-sm text-slate-500">
-          Lưu ý: Giá phải là số và không được để trống.
-        </p>
       </div>
     </form>
   );
