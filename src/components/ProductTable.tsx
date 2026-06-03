@@ -10,9 +10,7 @@ export default function ProductTable({ products, onDelete, onEdit }: Props) {
   if (products.length === 0) {
     return (
       <div className="bg-white rounded-[32px] border border-slate-200 p-12 text-center shadow-sm">
-        <p className="text-slate-500 text-lg">
-          Không có sản phẩm nào để hiển thị.
-        </p>
+        <p className="text-slate-500 text-lg">No products to display.</p>
       </div>
     );
   }
@@ -24,22 +22,22 @@ export default function ProductTable({ products, onDelete, onEdit }: Props) {
           <thead>
             <tr className="bg-gradient-to-r from-slate-50 to-slate-100 border-b border-slate-200">
               <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
-                Ảnh
+                Image
               </th>
               <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
-                Tên sản phẩm
+                Product Name
               </th>
               <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
-                Danh mục
+                Category
               </th>
               <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
-                Giá
+                Price
               </th>
               <th className="px-6 py-4 text-left text-sm font-semibold text-slate-900">
-                Tồn kho
+                Stock
               </th>
               <th className="px-6 py-4 text-center text-sm font-semibold text-slate-900">
-                Hành động
+                Actions
               </th>
             </tr>
           </thead>
@@ -102,14 +100,14 @@ export default function ProductTable({ products, onDelete, onEdit }: Props) {
                       onClick={() => onEdit(product)}
                       className="inline-flex items-center rounded-lg bg-blue-50 px-3 py-2 text-sm font-medium text-blue-600 transition hover:bg-blue-100"
                     >
-                      ✏️ Sửa
+                      ✏️ Edit
                     </button>
 
                     <button
                       onClick={() => onDelete(product.id)}
                       className="inline-flex items-center rounded-lg bg-red-50 px-3 py-2 text-sm font-medium text-red-600 transition hover:bg-red-100"
                     >
-                      🗑️ Xóa
+                      🗑️ Delete
                     </button>
                   </div>
                 </td>

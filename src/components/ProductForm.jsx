@@ -12,12 +12,12 @@ function ProductForm({ onAdd }) {
     setError("");
 
     if (!name.trim() || !category.trim() || !price.trim()) {
-      setError("Vui lòng điền đầy đủ thông tin");
+      setError("Please fill in all required fields");
       return;
     }
 
     if (Number(price) <= 0) {
-      setError("Giá phải lớn hơn 0");
+      setError("Price must be a positive number");
       return;
     }
 
@@ -48,16 +48,16 @@ function ProductForm({ onAdd }) {
                 <FaBox className="text-base" />
               </div>
               <p className="text-xs uppercase tracking-[0.25em] text-cyan-600 font-semibold">
-                Thêm sản phẩm
+                Add Product
               </p>
             </div>
             <h2 className="text-xl font-semibold text-slate-900">
-              Nhập thông tin sản phẩm mới
+              Enter Product Information
             </h2>
           </div>
         </div>
         <p className="mt-3 text-sm text-slate-600">
-          Điền đầy đủ các trường bắt buộc để thêm sản phẩm vào hệ thống.
+          Fill in all required information to add the product to the system.
         </p>
       </div>
 
@@ -71,11 +71,11 @@ function ProductForm({ onAdd }) {
         <label className="block text-sm font-medium text-slate-700">
           <div className="flex items-center gap-2 mb-3">
             <FaTag className="text-cyan-600 text-xs" />
-            Tên sản phẩm <span className="text-red-500">*</span>
+            Product Name <span className="text-red-500">*</span>
           </div>
           <input
             className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 placeholder-slate-400 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100 focus:bg-white"
-            placeholder="VD: iPhone 15 Pro"
+            placeholder="e.g. iPhone 15 Pro"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -85,11 +85,11 @@ function ProductForm({ onAdd }) {
         <label className="block text-sm font-medium text-slate-700">
           <div className="flex items-center gap-2 mb-3">
             <FaBox className="text-cyan-600 text-xs" />
-            Danh mục <span className="text-red-500">*</span>
+            Category <span className="text-red-500">*</span>
           </div>
           <input
             className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 placeholder-slate-400 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100 focus:bg-white"
-            placeholder="VD: Điện thoại"
+            placeholder="e.g. Smartphones"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             required
@@ -101,12 +101,12 @@ function ProductForm({ onAdd }) {
         <label className="block text-sm font-medium text-slate-700">
           <div className="flex items-center gap-2 mb-3">
             <FaDollarSign className="text-cyan-600 text-xs" />
-            Giá (VND) <span className="text-red-500">*</span>
+            Price (VND) <span className="text-red-500">*</span>
           </div>
           <input
             type="number"
             className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 placeholder-slate-400 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100 focus:bg-white"
-            placeholder="VD: 15000000"
+            placeholder="e.g. 15000000"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             required
@@ -120,7 +120,7 @@ function ProductForm({ onAdd }) {
           type="submit"
           className="w-full rounded-2xl bg-gradient-to-r from-cyan-600 to-sky-600 px-6 py-3 text-white font-semibold shadow-sm transition hover:shadow-md hover:from-cyan-700 hover:to-sky-700 sm:w-auto"
         >
-          + Thêm sản phẩm
+          + Add Product
         </button>
       </div>
     </form>

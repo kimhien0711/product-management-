@@ -22,7 +22,7 @@ export default function EditProduct({ product, onClose, onSave }: Props) {
     setError("");
 
     if (!name.trim() || !category.trim() || price <= 0 || stock < 0) {
-      setError("Vui lòng điền đầy đủ thông tin và kiểm tra lại giá trị");
+      setError("Please fill in all fields and check the values");
       return;
     }
 
@@ -51,11 +51,11 @@ export default function EditProduct({ product, onClose, onSave }: Props) {
                 <FaBox className="text-base" />
               </div>
               <p className="text-xs uppercase tracking-[0.25em] font-semibold text-blue-600">
-                Sửa sản phẩm
+                Edit product
               </p>
             </div>
             <h2 className="text-xl font-semibold text-slate-900">
-              Cập nhật thông tin sản phẩm
+              Update product information
             </h2>
           </div>
           <button
@@ -63,7 +63,7 @@ export default function EditProduct({ product, onClose, onSave }: Props) {
             onClick={onClose}
             className="rounded-2xl bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-200"
           >
-            Đóng
+            Close
           </button>
         </div>
 
@@ -77,12 +77,12 @@ export default function EditProduct({ product, onClose, onSave }: Props) {
           <label className="block text-sm font-medium text-slate-700">
             <div className="flex items-center gap-2 mb-3">
               <FaTag className="text-blue-600 text-xs" />
-              Tên sản phẩm <span className="text-red-500">*</span>
+              Product name <span className="text-red-500">*</span>
             </div>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Nhập tên sản phẩm"
+              placeholder="Enter product name"
               className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:bg-white"
               required
             />
@@ -91,12 +91,12 @@ export default function EditProduct({ product, onClose, onSave }: Props) {
           <label className="block text-sm font-medium text-slate-700">
             <div className="flex items-center gap-2 mb-3">
               <FaBox className="text-blue-600 text-xs" />
-              Danh mục <span className="text-red-500">*</span>
+              Category <span className="text-red-500">*</span>
             </div>
             <input
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              placeholder="Nhập danh mục"
+              placeholder="Enter category"
               className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:bg-white"
               required
             />
@@ -105,13 +105,13 @@ export default function EditProduct({ product, onClose, onSave }: Props) {
           <label className="block text-sm font-medium text-slate-700">
             <div className="flex items-center gap-2 mb-3">
               <FaDollarSign className="text-blue-600 text-xs" />
-              Giá (VND) <span className="text-red-500">*</span>
+              Price (VND) <span className="text-red-500">*</span>
             </div>
             <input
               type="number"
               value={price === 0 ? "" : price}
               onChange={(e) => setPrice(Number(e.target.value))}
-              placeholder="Nhập giá"
+              placeholder="Enter price"
               className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:bg-white"
               required
               min="0"
@@ -121,13 +121,13 @@ export default function EditProduct({ product, onClose, onSave }: Props) {
           <label className="block text-sm font-medium text-slate-700">
             <div className="flex items-center gap-2 mb-3">
               <FaBoxes className="text-blue-600 text-xs" />
-              Tồn kho <span className="text-red-500">*</span>
+              Stock <span className="text-red-500">*</span>
             </div>
             <input
               type="number"
               value={stock === 0 ? "" : stock}
               onChange={(e) => setStock(Number(e.target.value))}
-              placeholder="Nhập số lượng"
+              placeholder="Enter quantity"
               className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:bg-white"
               required
               min="0"
@@ -137,12 +137,12 @@ export default function EditProduct({ product, onClose, onSave }: Props) {
           <label className="block text-sm font-medium text-slate-700 md:col-span-2">
             <div className="flex items-center gap-2 mb-3">
               <FaImage className="text-blue-600 text-xs" />
-              URL ảnh sản phẩm
+              Product image URL
             </div>
             <input
               value={image}
               onChange={(e) => setImage(e.target.value)}
-              placeholder="Nhập URL ảnh"
+              placeholder="Enter image URL"
               className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:bg-white"
             />
           </label>
@@ -153,14 +153,14 @@ export default function EditProduct({ product, onClose, onSave }: Props) {
             type="submit"
             className="w-full rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-3 text-sm font-semibold text-white shadow hover:shadow-md transition hover:from-blue-700 hover:to-cyan-700 sm:w-auto"
           >
-            Lưu thay đổi
+            Save changes
           </button>
           <button
             type="button"
             onClick={onClose}
             className="w-full rounded-2xl bg-slate-100 px-6 py-3 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-200 transition sm:w-auto"
           >
-            Hủy
+            Cancel
           </button>
         </div>
       </form>

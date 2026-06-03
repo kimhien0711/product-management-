@@ -70,10 +70,10 @@ export default function Dashboard() {
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="space-y-2">
               <p className="text-sm uppercase tracking-[0.18em] text-slate-500">
-                Trình quản lý sản phẩm
+                Product Management Dashboard
               </p>
               <h1 className="text-3xl font-semibold text-slate-900">
-                Bảng điều khiển sản phẩm
+                Table Control Panel
               </h1>
             </div>
 
@@ -81,14 +81,14 @@ export default function Dashboard() {
               onClick={() => setShowModal(true)}
               className="inline-flex items-center justify-center rounded-3xl bg-cyan-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-cyan-700"
             >
-              + Thêm sản phẩm
+              + Add Product
             </button>
           </div>
 
           <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_320px]">
             <div className="rounded-3xl border border-slate-200 bg-slate-50 px-4 py-4 shadow-sm">
               <p className="text-xs uppercase tracking-[0.18em] text-slate-500">
-                Tổng sản phẩm
+                Summary
               </p>
               <p className="mt-3 text-3xl font-semibold text-slate-900">
                 {searchKeyword ? filteredProducts.length : products.length}
@@ -97,11 +97,11 @@ export default function Dashboard() {
 
             <div className="rounded-3xl border border-slate-200 bg-slate-50 px-4 py-4 shadow-sm">
               <p className="text-xs uppercase tracking-[0.18em] text-slate-500">
-                Tìm sản phẩm
+                Search Products
               </p>
               <input
                 type="text"
-                placeholder="Nhập tên sản phẩm..."
+                placeholder="Search products..."
                 value={searchKeyword}
                 onChange={(e) => setSearchKeyword(e.target.value)}
                 className="mt-3 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100"
@@ -140,10 +140,10 @@ export default function Dashboard() {
 
         {confirmDelete && (
           <ConfirmDialog
-            title="Xác nhận xóa sản phẩm"
-            message={`Bạn có chắc chắn muốn xóa sản phẩm "${confirmDelete.name}"? Hành động này không thể hoàn tác.`}
-            confirmText="Xóa"
-            cancelText="Hủy"
+            title="Confirm Product Deletion"
+            message={`Are you sure you want to delete the product "${confirmDelete.name}"? This action cannot be undone.`}
+            confirmText="Delete"
+            cancelText="Cancel"
             isDestructive={true}
             onConfirm={handleConfirmDelete}
             onCancel={() => setConfirmDelete(null)}

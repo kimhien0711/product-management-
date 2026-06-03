@@ -5,10 +5,10 @@ function ProductList({ products, onDelete }) {
     <div className="overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-sm">
       <div className="border-b border-slate-200 bg-slate-100 px-6 py-4">
         <h2 className="text-lg font-semibold text-slate-900">
-          Danh sách sản phẩm
+          List of Products
         </h2>
         <p className="mt-1 text-sm text-slate-500">
-          Quản lý sản phẩm hiện có và thực hiện thao tác xóa.
+          Manage existing products and perform deletion actions.
         </p>
       </div>
 
@@ -17,10 +17,10 @@ function ProductList({ products, onDelete }) {
           <thead className="bg-cyan-50 text-cyan-700 uppercase tracking-[0.12em] text-xs">
             <tr>
               <th className="px-6 py-4 text-left font-semibold">ID</th>
-              <th className="px-6 py-4 text-left font-semibold">Tên</th>
-              <th className="px-6 py-4 text-left font-semibold">Danh mục</th>
-              <th className="px-6 py-4 text-left font-semibold">Giá</th>
-              <th className="px-6 py-4 text-left font-semibold">Hành động</th>
+              <th className="px-6 py-4 text-left font-semibold">Name</th>
+              <th className="px-6 py-4 text-left font-semibold">Category</th>
+              <th className="px-6 py-4 text-left font-semibold">Price</th>
+              <th className="px-6 py-4 text-left font-semibold">Actions</th>
             </tr>
           </thead>
 
@@ -31,7 +31,7 @@ function ProductList({ products, onDelete }) {
                   colSpan="5"
                   className="px-6 py-12 text-center text-slate-500"
                 >
-                  Không tìm thấy sản phẩm.
+                  No products found.
                 </td>
               </tr>
             ) : (

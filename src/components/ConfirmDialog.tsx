@@ -11,8 +11,8 @@ interface Props {
 export default function ConfirmDialog({
   title,
   message,
-  confirmText = "Xác nhận",
-  cancelText = "Hủy",
+  confirmText = "Confirm",
+  cancelText = "Cancel",
   isDestructive = false,
   onConfirm,
   onCancel,

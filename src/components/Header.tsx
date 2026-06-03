@@ -10,14 +10,14 @@ export default function Header() {
               <FaBox className="text-base" />
             </div>
             <p className="text-xs uppercase tracking-[0.25em] font-semibold text-cyan-600">
-              Hệ thống quản lý
+              Management System 
             </p>
           </div>
           <h1 className="text-2xl font-semibold text-slate-900">
-            Bảng điều khiển sản phẩm
+            Product Management Dashboard
           </h1>
           <p className="text-sm text-slate-600">
-            Quản lý toàn bộ sản phẩm và tồn kho một cách hiệu quả
+            Management system for efficient product and inventory control.  
           </p>
         </div>
       </div>

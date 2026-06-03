@@ -38,10 +38,10 @@ export default function ProductModal({ onClose, onSave }: Props) {
         <div className="flex items-center justify-between gap-4 mb-5">
           <div>
             <h2 className="text-2xl font-bold text-slate-900">
-              Thêm sản phẩm mới
+              Add New Product
             </h2>
             <p className="text-sm text-slate-500">
-              Nhập đầy đủ thông tin để lưu sản phẩm.
+              Enter all required information to save the product.
             </p>
           </div>
           <button
@@ -49,63 +49,63 @@ export default function ProductModal({ onClose, onSave }: Props) {
             onClick={onClose}
             className="rounded-2xl bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-200"
           >
-            Đóng
+            Close
           </button>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
           <label className="block text-sm font-medium text-slate-700">
-            Tên sản phẩm
+            Product Name
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Nhập tên sản phẩm"
+              placeholder="Enter product name"
               className="mt-3 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100"
               required
             />
           </label>
 
           <label className="block text-sm font-medium text-slate-700">
-            Danh mục
+            Category
             <input
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              placeholder="Nhập danh mục"
+              placeholder="Enter category"
               className="mt-3 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100"
               required
             />
           </label>
 
           <label className="block text-sm font-medium text-slate-700">
-            Giá
+            Price
             <input
               type="number"
               value={price === 0 ? "" : price}
               onChange={(e) => setPrice(Number(e.target.value))}
-              placeholder="Nhập giá"
+              placeholder="Enter price"
               className="mt-3 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100"
               required
             />
           </label>
 
           <label className="block text-sm font-medium text-slate-700">
-            Số lượng
+            Stock
             <input
               type="number"
               value={stock === 0 ? "" : stock}
               onChange={(e) => setStock(Number(e.target.value))}
-              placeholder="Nhập số lượng"
+              placeholder="Enter stock quantity"
               className="mt-3 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100"
               required
             />
           </label>
 
           <label className="block text-sm font-medium text-slate-700 md:col-span-2">
-            URL ảnh
+            Product image URL
             <input
               value={image}
               onChange={(e) => setImage(e.target.value)}
-              placeholder="Nhập URL ảnh sản phẩm"
+              placeholder="Enter product image URL"
               className="mt-3 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100"
             />
           </label>
@@ -116,14 +116,14 @@ export default function ProductModal({ onClose, onSave }: Props) {
             type="submit"
             className="w-full rounded-2xl bg-cyan-600 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-cyan-700 transition sm:w-auto"
           >
-            Lưu sản phẩm
+            Save Product
           </button>
           <button
             type="button"
             onClick={onClose}
             className="w-full rounded-2xl bg-slate-100 px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-200 transition sm:w-auto"
           >
-            Hủy
+            Cancel
           </button>
         </div>
       </form>
